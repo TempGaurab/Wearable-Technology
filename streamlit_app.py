@@ -1,13 +1,16 @@
 import streamlit as st
 import pandas as pd
-from qr_code_generation import read_profiles_from_json
-from creation_of_code import save_profiles_to_json
-
+import json
 # Set the title and favicon that appear in the Browser's tab bar.
 st.set_page_config(
     page_title='Wearable Technology',
     page_icon='https://utfs.io/f/alMZB5gCXzuS24GQqTWocmbORYtfUTyMF045CuwrBzZv9sjL', # This is an emoji shortcode. Could be a URL too.
 )
+
+def read_profiles_from_json(filename='user_profiles.json'):
+    with open(filename, 'r') as json_file:
+        profiles = json.load(json_file)
+    return profiles
 
 def display_user_profile(profile):
     """

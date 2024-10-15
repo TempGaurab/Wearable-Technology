@@ -29,7 +29,7 @@ def get_user_profile(user_profiles, user_id):
 
 def generate_qr_code(user_id):
     # Generate a QR code encoding the user profile URL
-    url = f"http://localhost:8501/?user_id={user_id}"
+    url = f"https://wear-me.streamlit.app/?user_id={user_id}"
     qr_img = qrcode.make(url)
     return qr_img
 

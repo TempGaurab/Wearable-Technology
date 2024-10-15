@@ -2,6 +2,12 @@ import streamlit as st
 import pandas as pd
 import json
 
+# Set the title and favicon that appear in the Browser's tab bar.
+st.set_page_config(
+    page_title='Wearable Technology',
+    page_icon='https://utfs.io/f/alMZB5gCXzuS24GQqTWocmbORYtfUTyMF045CuwrBzZv9sjL',
+)
+
 # Custom CSS
 st.markdown("""
 <style>
@@ -34,12 +40,6 @@ st.markdown("""
     }
 </style>
 """, unsafe_allow_html=True)
-
-# Set the title and favicon that appear in the Browser's tab bar.
-st.set_page_config(
-    page_title='Wearable Technology',
-    page_icon='https://utfs.io/f/alMZB5gCXzuS24GQqTWocmbORYtfUTyMF045CuwrBzZv9sjL',
-)
 
 def read_profiles_from_json(filename='user_profiles.json'):
     with open(filename, 'r') as json_file:

@@ -57,7 +57,6 @@ def display_user_profile(profile):
         # Display content for new users
         st.header("Welcome to Our Community!")
         with st.container():
-            st.markdown('<div class="profile-info">', unsafe_allow_html=True)
             st.info(f"**Name:** {profile['name']}")
             st.info(f"**Age:** {profile['age']}")
             st.info(f"**Instagram Profile:** {profile['instagram_profile']}")

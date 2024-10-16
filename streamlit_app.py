@@ -58,10 +58,10 @@ def display_user_profile(profile):
         st.header("Welcome to Our Community!")
         with st.container():
             st.markdown('<div class="profile-info">', unsafe_allow_html=True)
-            st.write(f"**Name:** {profile['name']}")
-            st.write(f"**Age:** {profile['age']}")
-            st.write(f"**Instagram Profile:** {profile['instagram_profile']}")
-            st.write(f"**More Details:** {profile['description']}")
+            st.info(f"**Name:** {profile['name']}")
+            st.info(f"**Age:** {profile['age']}")
+            st.info(f"**Instagram Profile:** {profile['instagram_profile']}")
+            st.info(f"**More Details:** {profile['description']}")
             st.markdown('</div>', unsafe_allow_html=True)
     else:
         # Display content for returning users

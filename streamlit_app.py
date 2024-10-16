@@ -68,7 +68,6 @@ def display_user_profile(profile):
         st.header("Welcome Back!")
         st.subheader("We missed you!")
         with st.container():
-            st.markdown('<div class="profile-info">', unsafe_allow_html=True)
             st.write(f"**Name:** {profile['name']}")
             st.write(f"**Age:** {profile['age']}")
             st.write(f"**Instagram Profile:** {profile['instagram_profile']}")

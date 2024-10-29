@@ -65,7 +65,7 @@ function readProfilesFromSessionStorage (key = 'user_profiles') {
   const userId = urlParams.get('user_id');
   
   if (userId) {
-    const userProfiles = readProfilesFromJson();
+    const userProfiles = readProfilesFromSessionStorage();
     const profile = userProfiles[userId];
   
     if (profile) {

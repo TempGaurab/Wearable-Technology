@@ -1,17 +1,17 @@
-function readProfilesFromJson(filename = 'user_profiles.json') {
+function readProfilesFromSessionStorage(key = 'user_profiles') {
     try {
-      const jsonData = localStorage.getItem(filename);
-      return jsonData ? JSON.parse(jsonData) : {};
+      const sessionData = sessionStorage.getItem(key);
+      return sessionData ? JSON.parse(sessionData) : {};
     } catch (error) {
-      console.error('Error reading profiles from JSON:', error);
+      console.error('Error reading profiles from session storage:', error);
       return {};
     }
   }
   
-  function saveProfileToJson(profile, filename = 'user_profiles.json') {
-    const userProfiles = readProfilesFromJson(filename);
+  function saveProfileToSessionStorage(profile, key = 'user_profiles') {
+    const userProfiles = readProfilesFromSessionStorage(key);
     userProfiles[profile.userId] = profile;
-    localStorage.setItem(filename, JSON.stringify(userProfiles));
+    sessionStorage.setItem(key, JSON.stringify(userProfiles));
   }
   
   function displayUserProfile(profile) {

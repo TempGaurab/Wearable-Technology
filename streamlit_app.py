@@ -56,10 +56,10 @@ def display_user_profile(profile):
     else:
         # Display existing user profile details
         st.header("User Profile")
-        st.info(f"**Name:** {profile['name']}")
-        st.info(f"**Age:** {profile['age']}")
-        st.info(f"**Instagram Profile:** {profile['instagram_profile']}")
-        st.info(f"**Description:** {profile['description']}")
+        st.write(f"**Name:** {profile['name']}")
+        st.write(f"**Age:** {profile['age']}")
+        st.write(f"**Instagram Profile:** {profile['instagram_profile']}")
+        st.write(f"**Description:** {profile['description']}")
 
 def save_profile_to_json(profile, filename='user_profiles.json'):
     user_profiles = read_profiles_from_json(filename)

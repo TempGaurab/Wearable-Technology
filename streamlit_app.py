@@ -58,11 +58,12 @@ def display_user_profile(profile):
             st.markdown('</div>', unsafe_allow_html=True)
              
 
-# Get the user_id from the URL parameters
-user_id = st.query_params.get("user_id", [None])[0]
-# Proceed only if user_id is not None
-if user_id:
-    user_id = "1000" + str(user_id)
+# Allow user to enter their ID
+user_id_input = st.text_input("Enter your User ID:", "")
+
+# Proceed if user_id is provided by the user
+if user_id_input:
+    user_id = "1000" + user_id_input  # Generate the full user ID format
     user_profiles = read_profiles_from_json()
     profile = user_profiles.get(user_id)
 
@@ -71,4 +72,4 @@ if user_id:
     else:
         st.error(f"User ID {user_id} not found.")
 else:
-    st.error("No user ID provided.")
+    st.info("Please enter your user ID in the input box above.")

@@ -60,7 +60,7 @@ def display_user_profile(profile):
 
 # Get the user_id from the URL parameters
 user_id = st.query_params.get("user_id", [None])[0]
-user_id = "1000" + user_id
+user_id = "1000" + str(user_id)
 
 if user_id:
     user_profiles = read_profiles_from_json()

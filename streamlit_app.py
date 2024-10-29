@@ -28,8 +28,11 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 def read_profiles_from_json(filename='user_profiles.json'):
-    with open(filename, 'r') as json_file:
-        profiles = json.load(json_file)
+    try:
+        with open(filename, 'r') as json_file:
+            profiles = json.load(json_file)
+    except (FileNotFoundError, json.JSONDecodeError):
+        profiles = {}  # Return empty dict if file does not exist or is empty
     return profiles
 
 def display_user_profile(profile):
@@ -51,8 +54,8 @@ def display_user_profile(profile):
             profile['description'] = description
             profile['is_new'] = False  # Update is_new to False
             st.success("Your profile has been created!")
-            # Optionally, save this updated profile back to the JSON file
-            save_profile_to_json(profile)  # You may want to implement this function
+            # Save updated profile to JSON
+            save_profile_to_json(profile)  
     else:
         # Display existing user profile details
         st.header("User Profile")
@@ -65,7 +68,7 @@ def save_profile_to_json(profile, filename='user_profiles.json'):
     user_profiles = read_profiles_from_json(filename)
     user_profiles[profile['user_id']] = profile  # Assuming you have a user_id key
     with open(filename, 'w') as json_file:
-        json.dump(user_profiles, json_file)
+        json.dump(user_profiles, json_file, indent=4)  # Indent for better readability
 
 # Extract user_id from query params
 query_params = st.experimental_get_query_params()

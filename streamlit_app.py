@@ -13,6 +13,10 @@ st.markdown("""
     .stApp {
         background-color: #f0f8ff;
     }
+    .header {
+        text-align: center;
+        color: #2c3e50;
+    }
     .profile-info {
         background-color: white;
         padding: 20px;
@@ -24,14 +28,32 @@ st.markdown("""
         color: #2c3e50;
         text-align: center;
     }
+    .button-container {
+        display: flex;
+        justify-content: center;
+        margin-top: 20px;
+    }
+    .btn {
+        background-color: #3498db;
+        color: white;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+    .btn:hover {
+        background-color: #2980b9;
+    }
 </style>
 """, unsafe_allow_html=True)
 
+# Function to read user profiles from JSON
 def read_profiles_from_json(filename='user_profiles.json'):
     with open(filename, 'r') as json_file:
         profiles = json.load(json_file)
     return profiles
 
+# Function to display the user profile
 def display_user_profile(profile):
     if profile['is_new']:
         # If the user is new, ask for additional details
@@ -61,11 +83,29 @@ def display_user_profile(profile):
         st.info(f"**Instagram Profile:** {profile['instagram_profile']}")
         st.info(f"**Description:** {profile['description']}")
 
+# Function to save the profile to JSON
 def save_profile_to_json(profile, filename='user_profiles.json'):
     user_profiles = read_profiles_from_json(filename)
     user_profiles[profile['user_id']] = profile  # Assuming you have a user_id key
     with open(filename, 'w') as json_file:
         json.dump(user_profiles, json_file)
+
+# Homepage layout
+st.title("Welcome to Wearable Technology!")
+st.markdown("""
+    <div class="header">
+        <h2>Your Gateway to Innovative Wearables</h2>
+        <p>Discover the latest in wearable technology and connect with our community.</p>
+    </div>
+""", unsafe_allow_html=True)
+
+# Navigation buttons
+st.markdown('<div class="button-container">', unsafe_allow_html=True)
+if st.button("View My Profile"):
+    st.experimental_set_query_params(user_id="10001")  # Example user_id
+if st.button("Join Our Community"):
+    st.experimental_set_query_params(user_id="new")  # Example for new user registration
+st.markdown('</div>', unsafe_allow_html=True)
 
 # Extract user_id from query params
 query_params = st.experimental_get_query_params()
@@ -79,7 +119,10 @@ if user_id:
     if profile:
         profile['user_id'] = user_id  # Add user_id to profile for saving
         display_user_profile(profile)
+    elif user_id == "new":
+        # Create a new profile if "new" user_id is set
+        display_user_profile({"is_new": True})
     else:
         st.error(f"User ID {user_id} not found.")
 else:
-    st.info("No user ID provided in the URL.")
+    st.info("Please select an option above to continue.")

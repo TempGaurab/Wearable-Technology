@@ -1,4 +1,4 @@
-function readProfilesFromSessionStorage(key = 'user_profiles') {
+function readProfilesFromJson (key = 'user_profiles') {
     try {
       const sessionData = sessionStorage.getItem(key);
       return sessionData ? JSON.parse(sessionData) : {};
@@ -8,8 +8,8 @@ function readProfilesFromSessionStorage(key = 'user_profiles') {
     }
   }
   
-  function saveProfileToSessionStorage(profile, key = 'user_profiles') {
-    const userProfiles = readProfilesFromSessionStorage(key);
+  function saveProfileToJson(profile, key = 'user_profiles') {
+    const userProfiles = readProfilesFromJson (key);
     userProfiles[profile.userId] = profile;
     sessionStorage.setItem(key, JSON.stringify(userProfiles));
   }

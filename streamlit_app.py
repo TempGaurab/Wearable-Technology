@@ -47,12 +47,6 @@ def read_profiles_from_json(filename='user_profiles.json'):
     return profiles
 
 def display_user_profile(profile):
-    """
-    Displays the user profile based on the is_new status.
-
-    Args:
-        profile (dict): The user profile dictionary.
-    """
     if profile['is_new']:
         # Display content for new users
         st.header("Welcome to Our Community!")
@@ -62,16 +56,7 @@ def display_user_profile(profile):
             st.info(f"**Instagram Profile:** {profile['instagram_profile']}")
             st.info(f"**More Details:** {profile['description']}")
             st.markdown('</div>', unsafe_allow_html=True)
-    else:
-        # Display content for returning users
-        st.header("Welcome Back!")
-        st.subheader("We missed you!")
-        with st.container():
-            st.write(f"**Name:** {profile['name']}")
-            st.write(f"**Age:** {profile['age']}")
-            st.write(f"**Instagram Profile:** {profile['instagram_profile']}")
-            st.write(f"**Description:** {profile['description']}")
-            st.markdown('</div>', unsafe_allow_html=True)
+             
 
 # Get the user_id from the URL parameters
 user_id = st.query_params.get("user_id", [None])[0]
